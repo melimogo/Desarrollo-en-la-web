@@ -1,0 +1,50 @@
+[
+	{
+		"codigo": "JM001",
+		"nombre": "Jugo de Mor",
+		"precio": "4000",
+		"opciones": "con hielo, sin hielo",
+		"categoria": "Postres",
+		"subcategoria": "Extranjero"
+	},
+	{
+		"codigo": "JM001",
+		"nombre": "Jugo de Morita",
+		"precio": "4000",
+		"opciones": "con hielo, sin hielo",
+		"categoria": "Entradas",
+		"subcategoria": "Tapas"
+	},
+	{
+		"codigo": "JM002",
+		"nombre": "Jugo de Mangito",
+		"precio": "5000",
+		"opciones": "con hielo",
+		"categoria": "Dieteticos",
+		"subcategoria": "Agua"
+	},
+	{
+		"codigo": "JM003",
+		"nombre": "Jugo de lula",
+		"precio": "4500",
+		"opciones": "con hielo",
+		"categoria": "Postres",
+		"subcategoria": "Extranjero"
+	},
+	{
+		"codigo": "JM001",
+		"nombre": "Jugo de Mora",
+		"precio": "4000",
+		"opciones": "con hielo, sin hielo",
+		"categoria": "Entradas",
+		"subcategoria": "Tapas"
+	},
+	{
+		"codigo": "JM055",
+		"nombre": "Jugo de Mora",
+		"precio": "4000",
+		"opciones": "con hielo, sin hielo",
+		"categoria": "Bebidas",
+		"subcategoria": ""
+	}
+]

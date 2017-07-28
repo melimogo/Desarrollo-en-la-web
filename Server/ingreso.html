@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+
+body{
+        font-family: Verdana;
+		font-size: 120%;
+		padding: 4em 4em 4em 4em;
+}
+
+div{
+	margin: 7px;
+}
+
+.label{
+	display:inline-block;
+	width: 150px;
+}
+
+</style>
+
+<script>
+	// Declarar un objeto
+	var producto1 = {
+		codigo: "JM001",
+		nombre: "Jugo de Mora",
+		precio: 4000,
+		opciones: "con hielo, sin hielo",
+		categoria: "Bebidas",
+		subcategoria: "Jugos"
+	};
+	
+	var categorias;
+	
+	function MostrarProducto( prod ){
+		document.getElementById( "codigo" ).value = prod.codigo;
+		document.getElementById( "nombre" ).value = prod.nombre;
+		document.getElementById( "precio" ).value = prod.precio;
+		document.getElementById( "opciones" ).value = prod.opciones;
+		document.getElementById( "categoria" ).value = prod.categoria;
+		document.getElementById( "subcategoria" ).value = prod.subcategoria;
+	}
+	
+	function PedirCategorias(){
+	
+	
+		var xmlhttp = new XMLHttpRequest();
+		var url = "/categorias"; // Cambie por su URL
+
+		//xmlhttp.onreadystatechange = function() {
+		xmlhttp.open("get",url,false);
+		xmlhttp.send();
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var s = xmlhttp.responseText;
+			window.alert( s );
+			categorias = JSON.parse( s );
+			window.alert( categorias );
+			//var myArr = JSON.parse(xmlhttp.responseText);
+			//myFunction(myArr);
+		}
+			
+	}
+		
+	function GuardarProducto(){
+		var prod = {};
+		prod.codigo = document.getElementById( "codigo" ).value;
+		prod.nombre = document.getElementById( "nombre" ).value;
+		prod.precio = document.getElementById( "precio" ).value;
+		prod.opciones = document.getElementById( "opciones" ).value;
+		prod.categoria = document.getElementById( "categoria" ).value;
+		prod.subcategoria = document.getElementById( "subcategoria" ).value;
+		
+		return prod;
+	
+	}
+		
+	function SalvarCampos(){
+		var producto = {};
+		producto = GuardarProducto();
+		window.alert( JSON.stringify(producto) );
+		var xmlhttp = new XMLHttpRequest();
+		
+		xmlhttp.open("POST","/producto",false);
+		var payload = JSON.stringify( producto )
+		xmlhttp.send( payload );
+	}
+
+	
+	function LlenarCampos(){
+		PedirCategorias();
+		//Obtener la lista de la seleccion
+		var lista = document.getElementById("categoria");
+
+		//Recorrer el array 
+		for(var i = 0; i < categorias.length; i++){
+			//obtener el elemento actual del array
+			var cat = categorias[i];
+			//crear una nuava opcion;
+			var opcion = document.createElement( "OPTION" );
+			opcion.text = cat.nombre;
+			opcion.value = cat.nombre;
+			//Añadir combobox
+			lista.options.add( opcion );
+		
+		}
+	
+	}
+	
+	function LlenarSubcategorias( lista ){
+		var seleccion = lista.options[lista.selectedIndex].text;
+        var subcategoria = categorias[lista.selectedIndex].subcategorias;
+        var sublista = document.getElementById("subcategoria");
+        sublista.options.length = 0;
+        for(var i = 0; i<subcategoria.length;i++){
+            var sub =  subcategoria[i];
+            var opcion = document.createElement("OPTION");
+            opcion.text = sub;
+                
+            sublista.options.add(opcion);
+              
+          }
+		
+	}
+	
+	
+</script>
+
+  </head>
+  <body onload="LlenarCampos(); MostrarProducto( producto1 )">
+	<h1>Editar catalogo de productos</h1>
+	<div><span class="label">Codigo</span><input type="text" id="codigo" /></div>
+    <div><span class="label">Nombre</span><input type="text" id="nombre" /></div>
+	<div><span class="label">Precio</span> <input type="text" id="precio" /> </div>
+	<div><span class="label">Opciones</span> <input type="text" id="opciones" /> </div>
+	<div><span class="label">Categoria</span> <select id="categoria" onchange= "LlenarSubcategorias(this)"> </select> </div>
+	<div><span class="label">Subcategoria</span> <select id="subcategoria" > </select> </div>
+	
+	
+	<!--<select id='sele'>
+		<option>Jugos</option>
+		<option>Sopas</option>
+	</select>!-->
+	
+	<button id="guardar" onclick="SalvarCampos()"  >Guardar</button>
+  
+  </body>
+</html>
