@@ -1,0 +1,30 @@
+<html >
+<head>
+<title>Portero de PokeJugos</title>
+<meta charset="utf-8">
+
+<script>
+function verificarEdad(){
+	edad = document.getElementById( "edad" );
+	if (edad.value < 18){
+		window.alert("eres un bebito a dormir");
+	} else{
+		window.alert("continua");
+	}	
+}
+</script>
+
+</head>
+<body>
+
+<h2>Bienvenido al bar Zika</h2>
+
+<p>Para ingresar debe ser mayor de edad</p>
+
+Ingrese su edad: 
+
+<input type="number" id="edad" onchange="verificarEdad()" />
+
+<div id="resultado"></div>
+</body>
+</html>

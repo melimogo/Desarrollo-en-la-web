@@ -1,0 +1,23 @@
+﻿
+body{ 
+	background:#024E95; 
+	margin:100px 50px;
+	position:absolute;
+	text-align:center;
+
+}
+h1,h2,h3{
+	color:yellow;
+	margin-left:480px;
+}
+
+div{
+	padding:0px;
+	width:200px;
+	margin:30px;
+	margin-left:500px;
+	background:white;
+	border:outset;
+	display:block;
+}
+
